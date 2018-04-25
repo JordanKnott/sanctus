@@ -1,0 +1,14 @@
+<div class="front-page-recent-posts">
+    <div class="container">
+        <div class="row">
+                <div class="twelve columns">
+                    {{ $pages := where .Data.Pages "Type" "blog" }}
+                    {{ $paginator := .Paginate $pages 3 }}
+                    {{ $length := len $pages }}
+                    {{ range $index, $page := $paginator.Pages }}
+                        {{ partial "post-card.html" . }}
+                    {{ end }}
+            </div>
+        </div>
+    </div>
+</div>

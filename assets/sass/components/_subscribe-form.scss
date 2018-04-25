@@ -1,0 +1,55 @@
+.subscribe-form {
+  > form {
+    height: 45px;
+  }
+
+  .subscribe-email {
+    vertical-align: bottom;
+    height: 100%;
+
+    @media (min-width: 800px){
+      width: 300px;
+    }
+
+    color: #fff !important;
+    background-color: #333;
+    border: 0 solid transparent;
+    white-space: nowrap;
+    overflow: hidden;
+    border-radius: 3px 0 0 3px !important;
+    padding: 0;
+  }
+
+  .subscribe-submit {
+    height: 100%;
+    background: #333;
+    color: #fff;
+    border: 0;
+    font-size: 1.2em;
+    font-weight: bold;
+    line-height: 1;
+    padding: .2em 1em;
+    margin: 0;
+    text-decoration: none;
+    font-variant: all-small-caps;
+
+    &:hover {
+      text-decoration: underline;
+      color: #fff;
+      background-color: #333;
+      cursor: pointer;
+    }
+
+    &:active,
+    &:focus {
+      text-decoration: underline;
+      color: #fff;
+      background-color: #333;
+    }
+
+  }
+
+  .subscribe-submit:hover {
+    background: #333;
+  }
+}

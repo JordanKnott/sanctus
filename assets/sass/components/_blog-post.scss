@@ -1,0 +1,23 @@
+.entry-header {
+  text-align: center;
+
+  .entry-title {
+    font-size: 2.25em;
+  }
+
+  .entry-meta {
+    p {
+      color: $passive-text-color;
+    }
+  }
+
+}
+
+.entry-thumbnail {
+  text-align: center;
+
+  img {
+    width: 80%;
+    border-radius: 15px;
+  }
+}

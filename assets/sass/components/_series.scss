@@ -1,0 +1,27 @@
+.post-series-list {
+
+  p {
+    font-size: 1.5em;
+    margin: 0;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    li {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      border-bottom: 1px solid #edeeef;
+
+      &:first-child {
+        border-top: 1px solid #edeeef;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
+  }
+}

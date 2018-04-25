@@ -1,0 +1,43 @@
+{{ define "header" }}
+    {{ partial "header.html" }}
+{{ end }}
+
+{{ define "main" }}
+    <section class="wrapper style1">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
+                    <header class="entry-header">
+                        <h2 class="entry-title">{{ .Title }}</h2>
+                        <div class="entry-meta">
+                            <p> Posted on {{ .PublishDate.Format "2 January 2006" }}</p>
+                        </div>
+                    </header>
+                    <div class="entry-thumbnail">
+                        <img src="{{ .Params.thumbnail }}">
+                    </div>
+                    <div class="entry-content">
+                        {{ .Content }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="blog-post-recent-posts">
+    <div class="container">
+        <div class="related-posts-intro">
+            <h2>Related Content</h2>
+        </div>
+        <div class="row related-posts">
+        </div>
+    </div>
+</section>
+
+{{ end }}
+
+{{ define "footer" }}
+    {{ partial "footer.html" }}
+{{ end }}

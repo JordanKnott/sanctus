@@ -1,0 +1,19 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+body,
+button,
+input,
+select,
+textarea {
+  color: $primary-text-color;
+  font-family: $font-main;
+  @include font-size(1);
+  line-height: $font-line-height;
+}
+
+@import "copy";

@@ -1,0 +1,9 @@
+a, a:active, a:focus {
+  color: $primary-text-link-color;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $primary-text-link-color;
+  text-decoration: underline;
+}

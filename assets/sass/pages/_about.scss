@@ -1,0 +1,54 @@
+#about {
+  text-align: left;
+  font-size: 1.2em;
+  margin: 5em 0 3em 0;
+
+  .about-headshot {
+    width: 45%;
+    height: auto;
+    margin: 0 auto;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+  .larger-headshot {
+    display: none;
+  }
+
+  .smaller-headshot {
+    display: block;
+  }
+
+  @media (min-width: 550px) {
+    .larger-headshot {
+      display: block;
+    }
+    .smaller-headshot {
+      display: none;
+    }
+  }
+
+  .about-social-icons {
+    i {
+      color: #6b6b6b;
+
+      &:hover,
+      &:focus,
+      &:active {
+        color: $passive-text-color;
+      }
+    }
+    padding-bottom: 2em;
+  }
+
+  .about-title {
+    font-size: 2.5em;
+    margin: 0.67em 0;
+  }
+
+  .achievements {
+    text-align: left;
+  }
+}

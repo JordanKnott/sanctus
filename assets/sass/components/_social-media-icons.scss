@@ -1,0 +1,48 @@
+.social-media-icons {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    li {
+        display: inline-block;
+        margin-right: 15px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        a {
+            color: #404040;
+            font-size: 3em;
+            cursor: pointer;
+            &:hover {
+                color: $primary-background-color;
+            }
+        }
+
+    }
+}
+
+.social-media-icons-inverted {
+  margin: 0;
+  padding: 0;
+  text-aling: center;
+  li {
+    display: inline-block;
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    a {
+      font-size: 3em;
+      cursor: pointer;
+      color: #fff;
+
+      &:hover {
+        color: #404040;
+      }
+    }
+  }
+}

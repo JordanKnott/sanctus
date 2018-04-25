@@ -1,0 +1,14 @@
+{{ define "header" }}
+    {{ partial "header.html" . }}
+{{ end }}
+
+{{ define "main" }}
+    {{ partial "intro.html" . }}
+    {{ partial "recent-posts-banner.html" . }}
+    {{ partial "latest-blog.html" . }}
+    {{ partial "topics.html" . }}
+{{ end }}
+
+{{ define "footer" }}
+    {{ partial "footer.html" . }}
+{{ end }}
