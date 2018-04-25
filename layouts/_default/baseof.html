@@ -28,8 +28,19 @@
     {{ partial "scripts.html" . }}
   </head>
   <body>
-    <header>{{ block "header" . }}{{ end }}</header>
+    <header>
+      <div id="site-header" role="banner">
+        {{ block "header" . }}
+         {{ partial "header/brand-banner.html" . }}
+         {{ partial "header/navbar.html" . }}
+        {{ end }}
+      </div>
+    </header>
     <main>{{ block "main" . }}{{ end }}</main>
-    <footer>{{ block "footer" . }}{{ end }}</footer>
+    <footer>
+      {{ block "footer" . }}
+        {{ partial "footer.html" . }}
+      {{ end }}
+    </footer>
   </body>
 </html>
