@@ -13,19 +13,15 @@ var gulp = require('gulp'),
   autoprefixer = require('autoprefixer'),
   postcss = require('gulp-postcss');
 
-
-
 var paths = {};
 
 // Directory locations.
 paths.staticDir = 'static/';
 paths.assetsDir = 'assets/';
-paths.siteDir = 'public/';
-paths.siteAssetsDir = 'public/assets/';
-paths.criticalDir = 'assets/critical';
+paths.genAssetsDir = 'static/gen/';
+paths.criticalJsDir = 'static/gen/js/';
+paths.criticalCssDir = 'static/gen/css/';
 
-paths.fontFolderName = 'font';
-paths.imageFolderName = 'img';
 paths.scriptFolderName = 'js';
 paths.stylesFolderName = 'sass';
 paths.siteStylesFolderName = 'css';
@@ -37,113 +33,21 @@ paths.imageFiles = paths.assetsDir + paths.imageFolderName;
 paths.fontFiles = paths.assetsDir + paths.fontFolderName;
 
 // Site files locations.
-paths.siteCssFiles = paths.siteAssetsDir + paths.siteStylesFolderName;
-paths.siteJsFiles = paths.siteAssetsDir + paths.scriptFolderName;
-paths.siteImageFiles = paths.siteAssetsDir + paths.imageFolderName;
-paths.siteFontFiles = paths.siteAssetsDir + paths.fontFolderName;
+paths.genCssFiles = paths.genAssetsDir + paths.siteStylesFolderName;
+paths.genJsFiles = paths.genAssetsDir + paths.scriptFolderName;
 
-// Glob patterns by file type.
-paths.sassPattern = '/**/*.scss';
-paths.jsPattern = '/**/*.js';
-paths.imagePattern = '/**/*.+(jpg|JPG|jpeg|JPEG|png|PNG|svg|SVG|gif|GIF|webp|WEBP|tif|TIF)';
-paths.markdownPattern = '/**/*.+(md|MD|markdown|MARKDOWN)';
-paths.htmlPattern = '/**/*.html';
-paths.xmlPattern = '/**/*.xml';
-
-// Asset files globs
-paths.sassFilesGlob = paths.sassFiles + paths.sassPattern;
-paths.jsFilesGlob = paths.jsFiles + paths.jsPattern;
-paths.imageFilesGlob = paths.imageFiles + paths.imagePattern;
-
-// Site files globs
-paths.siteHtmlFilesGlob = paths.siteDir + paths.htmlPattern;
 
 // ==========[ Main Tasks ]============
-
 
 // Build the site
 gulp.task('build', function (callback) {
   runSequence(['build:styles:critical', 'build:scripts:critical'],
-    ['build:styles:main', 'build:fonts', 'build:scripts', 'build:html', 'build:images'],
+    ['build:styles:main', 'build:scripts'],
     callback);
-});
-
-gulp.task('serve', ['build'], function() {
-  bs.init({
-    server: '_site',
-    ghostMode: false,
-    logFileChanges: true,
-    logLevel: 'debug',
-    open: true
-  });
-
-  gulp.watch(['_config.yml'], ['build:hugo:watch']);
-
-  gulp.watch('assets/sass/**/*.scss', ['build:styles:main', 'build:styles:critical']);
-
-  gulp.watch('assets/js/**/*.js', ['build:scripts:watch']);
-
-  gulp.watch(['**/*.+(html|md|markdown|MD)', '!_site/**/*.*'], ['build']);
-
 });
 
 // Set default task to build
 gulp.task('default', ['build']);
-
-
-// ==========[ Fonts ]============
-
-// Copies fonts from assets to to site assets folder
-gulp.task('build:fonts', function () {
-  return gulp.src([paths.fontFiles + '**/*'])
-    .pipe(gulp.dest(paths.siteAssetsDir));
-});
-
-// ==========[ Images ]============
-
-// Optimizes and copies images
-gulp.task('build:images', function () {
-  return gulp.src(paths.imageFilesGlob)
-    .pipe(gulp.dest(paths.siteImageFiles));
-});
-
-gulp.task("deploy", ['build'], function() {
-    rsyncPaths = "_site/**/*";
-    rsyncConf = {
-        root: "_site/",
-        progress: true,
-        incremental: true,
-        relative: true,
-        emptyDirectories: true,
-        recursive: true,
-        clean: true,
-        hostname: "jordanthedev.com",
-        username: "root",
-        destination: "/var/www/html/"
-    };
-    return gulp.src(rsyncPaths)
-        .pipe(rsync(rsyncConf));
-});
-
-
-// ==========[ HTML ]============
-
-
-gulp.task('build:html', function () {
-  return gulp.src('_site/**/*.html')
-    .pipe(htmlmin({collapseWhitespace: true, removeComments: true}))
-    .pipe(gulp.dest('_site'));
-});
-
-
-// ==========[ Hugo ]============
-
-// Runs the jekyll build command
-gulp.task('build:hugo', function () {
-  var shellCommand = 'hugo';
-  return gulp.src('')
-    .pipe(run(shellCommand));
-});
 
 // ==========[ Scripts ]============
 
@@ -152,7 +56,7 @@ gulp.task('build:scripts:vendor', function () {
   return gulp.src([paths.jsFiles + '/vendor/**/*.js'])
     .pipe(concat('vendor.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(paths.siteJsFiles))
+    .pipe(gulp.dest(paths.genJsFiles))
 });
 
 // Minifies and concatenates custom files. Should be loaded after vendor styles
@@ -160,7 +64,7 @@ gulp.task('build:scripts:main', function () {
   return gulp.src([paths.jsFiles + '/main/**/*.js'])
     .pipe(concat('main.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(paths.siteJsFiles))
+    .pipe(gulp.dest(paths.genJsFiles))
 });
 
 // Minifies and concats critical JS code. Loaded in header.
@@ -168,7 +72,7 @@ gulp.task('build:scripts:critical', function () {
   return gulp.src([paths.jsFiles + '/critical/**/*.js'])
     .pipe(concat('critical.js'))
     .pipe(uglify())
-    .pipe(gulp.dest(paths.criticalDir))
+    .pipe(gulp.dest(paths.criticalJsDir))
 });
 
 gulp.task('build:scripts', ['build:scripts:vendor', 'build:scripts:main']);
@@ -183,8 +87,7 @@ gulp.task('build:styles:main', function () {
     loadPath: [paths.sassFiles]
   }).pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
     .pipe(cleancss())
-    .pipe(gulp.dest(paths.siteCssFiles))
-    .pipe(bs.stream());
+    .pipe(gulp.dest(paths.genCssFiles));
 });
 
 // Compiles critical sass file, adds vendor prefixes, minifies, then outputs to include folder.
@@ -196,5 +99,5 @@ gulp.task('build:styles:critical', function () {
     loadPath: [paths.sassFiles]
   }).pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
     .pipe(cleancss())
-    .pipe(gulp.dest(paths.criticalDir));
+    .pipe(gulp.dest(paths.criticalCssDir));
 });
