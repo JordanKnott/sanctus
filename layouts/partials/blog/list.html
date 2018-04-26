@@ -1,0 +1,23 @@
+{{ $pages := where .Data.Pages "Type" "blog" }}
+{{ $paginator := .Paginate $pages 6 }}
+{{ $length := len $pages }}
+{{ range $index, $page := $paginator.Pages }}
+    {{ $rem := mod $index 3 }}
+    {{ if eq $rem 0 }}<div class="row blog-card-row">{{ end }}
+    {{ partial "post-card.html" . }}
+    {{ if and (or (eq $rem 2) (eq $index $length) ) }}
+        </div>
+    {{ end }}
+{{ end }}
+
+<div class="row">
+    <div class="twelve columns">
+        {{ if eq $paginator.HasPrev true }}
+        <a href="{{ $paginator.Prev.URL }}">« Prev</a>
+        {{ end }}
+
+        {{ if eq $paginator.HasNext true }}
+        <a href="{{ $paginator.Next.URL }}">Next »</a>
+        {{ end }}
+    </div>
+</div>

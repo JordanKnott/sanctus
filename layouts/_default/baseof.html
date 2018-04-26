@@ -24,23 +24,23 @@
     {{ if (isset .Params "next") }}
       <link rel="next" href="{{ .Params.next }}">
     {{ end }}
-    {{ partial "critical/critical.html" . }}
-    {{ partial "scripts.html" . }}
+
+    {{ partial "scripts/critical.html" . }}
+    {{ partial "scripts/scripts.html" . }}
   </head>
   <body>
     <header>
-      <div id="site-header" role="banner">
-        {{ block "header" . }}
-         {{ partial "header/brand-banner.html" . }}
-         {{ partial "header/navbar.html" . }}
-        {{ end }}
-      </div>
+    {{ block "header" . }}
+      {{ partial "header/header.html" . }}
+    {{ end }}
     </header>
-    <main>{{ block "main" . }}{{ end }}</main>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
     <footer>
-      {{ block "footer" . }}
-        {{ partial "footer.html" . }}
-      {{ end }}
+    {{ block "footer" . }}
+      {{ partial "footer/footer.html" . }}
+    {{ end }}
     </footer>
   </body>
 </html>

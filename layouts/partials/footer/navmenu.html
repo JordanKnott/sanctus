@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="nine columns">
+        <div class="footer row">
+            <section class="three columns">
+                <h2>General</h2>
+                <table>
+                    {{ range $.Site.Data.general }}
+                    <tr><td><a href="{{ .href }}">{{ .name }}</a></td></tr>
+                    {{ end }}
+                </table>
+            </section>
+            <section class="four columns">
+                <h2>Top Posts</h2>
+                <table>
+                    {{ range $.Site.Data.top_posts }}
+                    <tr><td><a href="{{ .href }}">{{ .name }}</a></td></tr>
+                    {{ end }}
+                </table>
+            </section>
+            <section class="five columns">
+                <h2>Top Tutorials</h2>
+                <table>
+                    {{ range $.Site.Data.top_tutorials }}
+                    <tr><td><a href="{{ .href }}">{{ .name }}</a></td></tr>
+                    {{ end }}
+                </table>
+            </section>
+        </div>
+    </div>
+</div>

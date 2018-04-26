@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="twelve columns">
+        <ul class="social-media-icons">
+            {{ range $.Site.Data.social }}
+            <li>
+                <a href="{{ .href }}">
+                    <i class="fa fa-{{ .name }}"></i>
+                </a>
+            </li>
+            {{ end }}
+        <ul>
+    </div>
+</div>

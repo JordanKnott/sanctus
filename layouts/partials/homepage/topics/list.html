@@ -1,0 +1,11 @@
+<div class="row icon-blurbs">
+  {{ range .Site.Data.topics }}
+  <div class="four columns">
+    <div class="icon-blurb">
+      <img src="{{ .icon }}" />
+      <h3>{{ .name }}</h3>
+      <p>{{ .description }}</p>
+    </div>
+  </div>
+  {{ end }}
+</div>
