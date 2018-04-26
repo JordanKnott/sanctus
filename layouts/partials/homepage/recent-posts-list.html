@@ -6,7 +6,7 @@
                     {{ $paginator := .Paginate $pages 3 }}
                     {{ $length := len $pages }}
                     {{ range $index, $page := $paginator.Pages }}
-                        {{ partial "post-card.html" . }}
+                        {{ partial "blog/card.html" . }}
                     {{ end }}
             </div>
         </div>
