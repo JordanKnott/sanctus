@@ -5,6 +5,6 @@
     <a href="{{ .URL }}">
         <h1>{{ .Title }}</h1>
     </a>
-    <h3 class="meta">{{ .PublishDate.Format "2 January 2006" }} • <span class="category">{{ .Params.category }}</span></h3>
+    <h3 class="meta">{{ .PublishDate.Format "2 January 2006" }} • {{ .Params.category }}</h3>
 </div>
 

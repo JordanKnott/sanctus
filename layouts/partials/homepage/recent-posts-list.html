@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns">
-      {{ range first 5 (where .Data.Pages "Type" "blog") }}
+      {{ range first 3 (where .Data.Pages "Type" "blog") }}
         {{ partial "blog/card.html" . }}
       {{ end }}
       </div>

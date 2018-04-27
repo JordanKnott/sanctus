@@ -1,0 +1,43 @@
+{{ define "main" }}
+<div class="container wiki">
+
+  {{ $pages := where .Data.Pages "Type" "wiki" }}
+  {{ $paginator := .Paginate $pages 12 }}
+  <div class="row">
+    <div class="twelve columns">
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Tags</th>
+            <th>Last Updated</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{ range $index, $page := $paginator.Pages }}
+              <tr>
+                <td>{{ $page.Title }}</td>
+                <td>{{ delimit $page.Params.tags ", " }}</td>
+                <td>{{ $page.Lastmod.Format "2 January 2006" }}</td>
+              </tr>
+          {{ end }}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="row">
+      <div class="twelve columns">
+        <div class="pagination-buttons">
+            {{ if eq $paginator.HasPrev true }}
+            <a href="{{ $paginator.Prev.URL }}">« Prev</a>
+            {{ end }}
+
+            {{ if eq $paginator.HasNext true }}
+            <a href="{{ $paginator.Next.URL }}">Next »</a>
+            {{ end }}
+        </div>
+      </div>
+  </div>
+</div>
+{{ end }}

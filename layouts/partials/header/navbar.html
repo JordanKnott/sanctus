@@ -1,8 +1,8 @@
 <nav class="navigation-bar">
     <ul>
-        {{ $currentPage := . }}
+        {{ $currentNode := . }}
         {{ range .Site.Menus.main }}
-        <li {{ if $currentPage.IsMenuCurrent "main" . }} class="active" {{ end }}><a id="{{- .Identifier -}}" href="{{- .URL -}}">{{- .Name -}}</a></li>
+        <li {{ if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} class="active" {{ end }}><a id="{{- .Identifier -}}" href="{{- .URL -}}">{{- .Name -}}</a></li>
         {{ end }}
    </ul>
 </nav>

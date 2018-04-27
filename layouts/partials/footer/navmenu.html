@@ -4,24 +4,24 @@
             <section class="three columns">
                 <h2>General</h2>
                 <table>
-                    {{ range $.Site.Data.general }}
-                    <tr><td><a href="{{ .href }}">{{ .name }}</a></td></tr>
+                    {{ range .Site.Menus.general }}
+                    <tr><td><a href="{{ .URL }}">{{ .Name }}</a></td></tr>
                     {{ end }}
                 </table>
             </section>
             <section class="four columns">
-                <h2>Top Posts</h2>
+                <h2>Featured Posts</h2>
                 <table>
-                    {{ range $.Site.Data.top_posts }}
-                    <tr><td><a href="{{ .href }}">{{ .name }}</a></td></tr>
+                    {{ range .Site.Menus.featuredposts }}
+                    <tr><td><a href="{{ .URL }}">{{ .Name }}</a></td></tr>
                     {{ end }}
                 </table>
             </section>
             <section class="five columns">
-                <h2>Top Tutorials</h2>
+                <h2>Featured Wiki Pages</h2>
                 <table>
-                    {{ range $.Site.Data.top_tutorials }}
-                    <tr><td><a href="{{ .href }}">{{ .name }}</a></td></tr>
+                    {{ range .Site.Menus.featuredwikis }}
+                    <tr><td><a href="{{ .URL }}">{{ .Name }}</a></td></tr>
                     {{ end }}
                 </table>
             </section>

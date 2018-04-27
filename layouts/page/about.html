@@ -5,7 +5,7 @@
           <div>
             <div class="smaller-headshot">
               <div class="about-headshot">
-                  <img src="/{{ .Params.headshot }}">
+                  <img src="{{ .Params.headshot }}">
               </div>
               <div class="about-social-icons">
               </div>
@@ -16,15 +16,13 @@
         <div class="four columns">
           <div class="larger-headshot">
             <div class="about-headshot">
-                <img src="/{{ .Params.headshot }}">
+                <img src="{{ .Params.headshot }}">
             </div>
             <div class="about-social-icons">
               <!-- TODO: Add social icons -->
             </div>
           </div>
-          <div id="twitter-container">
-            <a class="twitter-timeline" href="https://twitter.com/JordanTheDev?ref_src=twsrc%5Etfw" data-tweet-limit="4">Tweets by JordanTheDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-          </div>
+          {{ partial "about/twitter.html" . }}
         </div>
       </div>
     </section>

@@ -82,11 +82,11 @@ gulp.task('build:scripts', ['build:scripts:vendor', 'build:scripts:main']);
 // Compiles main sass file, adds vendor prefixes, minifies, then outputs to _site folder
 gulp.task('build:styles:main', function () {
   return sass(paths.sassFiles + '/main.scss', {
-    style: 'compressed',
+    style: 'expanded',
     trace: true,
     loadPath: [paths.sassFiles]
   }).pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
-    .pipe(cleancss())
+    .pipe(cleancss({'format': 'beautify'}))
     .pipe(gulp.dest(paths.genCssFiles));
 });
 
@@ -94,7 +94,7 @@ gulp.task('build:styles:main', function () {
 // Must be run before jekyll builds
 gulp.task('build:styles:critical', function () {
   return sass(paths.sassFiles + '/critical.scss', {
-    style: 'compressed',
+    style: 'nested',
     trace: true,
     loadPath: [paths.sassFiles]
   }).pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
