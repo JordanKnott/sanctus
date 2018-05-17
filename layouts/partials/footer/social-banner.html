@@ -4,7 +4,7 @@
             {{ range $.Site.Data.social }}
             <li>
                 <a href="{{ .href }}">
-                    <i class="fa fa-{{ .name }}"></i>
+                    <i class="{{ .name }}"></i>
                 </a>
             </li>
             {{ end }}
