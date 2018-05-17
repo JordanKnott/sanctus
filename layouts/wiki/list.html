@@ -1,10 +1,12 @@
 {{ define "main" }}
-<div class="container wiki">
+<div class="container wiki wiki-list">
 
   {{ $pages := where .Data.Pages "Type" "wiki" }}
   {{ $paginator := .Paginate $pages 12 }}
   <div class="row">
     <div class="twelve columns">
+      <h1>Wiki</h1>
+      <p class="description">{{ .Params.description }}</p>
       <table>
         <thead>
           <tr>
@@ -17,7 +19,14 @@
           {{ range $index, $page := $paginator.Pages }}
               <tr>
                 <td><a href={{ $page.URL }}>{{ $page.Title }}</a></td>
-                <td>{{ delimit $page.Params.tags ", " }}</td>
+                <td>
+                  {{ $tagLen := len $page.Params.tags }}
+                  {{ range $index, $tag := $page.Params.tags }}
+                    {{ with $tag }}
+                    <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>{{ if eq $index $tagLen }}, {{ end }}
+                    {{ end }}
+                  {{ end }}
+                </td>
                 <td>{{ $page.Lastmod.Format "2 January 2006" }}</td>
               </tr>
           {{ end }}
