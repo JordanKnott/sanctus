@@ -1,0 +1,18 @@
+{{ define "main" }}
+
+<div class="container wiki">
+  <div class="row">
+    <div class="twelve columns wiki-header">
+      <h1>{{ .Title }}</h1>
+      <p> Posted on {{ .PublishDate.Format "2 January 2006" }}</p>
+      <!--<p>{{ delimit .Params.tags ", " }}</p>-->
+    </div>
+  </div>
+  <div class="row wiki-content">
+    <div class="twelve columns">
+      {{ .Content }}
+    </div>
+  </div>
+</div>
+
+{{ end }}

@@ -1,5 +1,10 @@
 {{ define "main" }}
 <div class="container wiki">
+  <div class="row">
+    <div class="twelve columns wiki-header">
+      <h1>Wiki</h2>
+    </div>
+  </div>
 
   {{ $pages := where .Data.Pages "Type" "wiki" }}
   {{ $paginator := .Paginate $pages 12 }}
@@ -16,7 +21,7 @@
         <tbody>
           {{ range $index, $page := $paginator.Pages }}
               <tr>
-                <td>{{ $page.Title }}</td>
+                <td><a href="{{ $page.URL }}">{{ $page.Title }}</a></td>
                 <td>{{ delimit $page.Params.tags ", " }}</td>
                 <td>{{ $page.Lastmod.Format "2 January 2006" }}</td>
               </tr>

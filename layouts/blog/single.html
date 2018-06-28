@@ -28,6 +28,14 @@
             <h2>Related Content</h2>
         </div>
         <div class="row related-posts">
+          {{ $related := .Site.RegularPages.Related . | first 3 }}
+          {{ with $related }}
+            <ul>
+              {{ range . }}
+              {{ partial "blog/card.html" . }}
+              {{ end }}
+            </ul>
+          {{ end }}
         </div>
     </div>
 </section>
