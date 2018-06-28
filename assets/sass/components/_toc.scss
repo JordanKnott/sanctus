@@ -1,0 +1,39 @@
+#wiki-toc-title {
+  margin: 0;
+  font-size: 1.2em;
+}
+
+#wiki-toc {
+  nav {
+    padding: 0;
+    display: table;
+    margin-bottom: 1em;
+    width: auto;
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+    }
+
+    a {
+      color: #999;
+    }
+
+    li {
+      padding-top: 12px;
+    }
+
+    ul {
+      margin-left: 0;
+      padding-left: 15px;
+    }
+
+    & > ul, & > ul > li > ul {
+      padding-left: 0px;
+    }
+
+    & > ul > li {
+      padding-top: 0;
+    }
+  }
+}

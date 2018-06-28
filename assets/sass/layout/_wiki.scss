@@ -13,8 +13,50 @@
       font-size: .9em;
     }
   }
+}
 
-  .wiki-content {
+.wiki-list {
+  h1 {
+    font-size: 2.25em;
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 0;
+  }
 
+  .description {
+    font-size: 1em;
+    color: #656565;
+    text-align: center;
+    margin-top: 0;
+  }
+}
+
+#wiki-post {
+  margin-top: 45px;
+
+  .content {
+    h1 {
+      text-align: center;
+      font-size: 2.25em;
+      margin: 0;
+    }
+
+    .meta {
+      font-size: .8em;
+      color: #656565;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 1.4em;
+    }
+
+    h3 {
+      font-size: 1.2em;
+    }
+    h4 {
+      font-size: 1.1em;
+    }
   }
 }

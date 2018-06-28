@@ -1,18 +1,17 @@
 {{ define "main" }}
-
-<div class="container wiki">
+<div class="container" id="wiki-post">
   <div class="row">
-    <div class="twelve columns wiki-header">
-      <h1>{{ .Title }}</h1>
-      <p> Posted on {{ .PublishDate.Format "2 January 2006" }}</p>
-      <!--<p>{{ delimit .Params.tags ", " }}</p>-->
+    <div class="four columns">
+      <h1 id="wiki-toc-title">Contents</h1>
+      <div id="wiki-toc">
+        {{ .TableOfContents }}
+      </div>
     </div>
-  </div>
-  <div class="row wiki-content">
-    <div class="twelve columns">
+    <div class="eight columns content">
+      <h1>{{ .Title }}</h1>
+      <p class="meta">{{ delimit .Params.tags ", " }}</p>
       {{ .Content }}
     </div>
   </div>
 </div>
-
 {{ end }}

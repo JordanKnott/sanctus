@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="container">
+  <div class="row">
+    <div class="twelve columns">
+      <h1>Oops, that page couldn't be found!</h1>
+
+      <p>Why not take a look at some of my recent posts?</p>
+    <div>
+  </div>
+  <div class="row">
+    <div class="twelve columns">
+      {{ range first 3 (where .Data.Pages "Type" "blog") }}
+        {{ partial "blog/card.html" . }}
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}
