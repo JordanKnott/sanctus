@@ -6,7 +6,16 @@
                     <header class="entry-header">
                         <h2 class="entry-title">{{ .Title }}</h2>
                         <div class="entry-meta">
-                            <p> Posted on {{ .PublishDate.Format "2 January 2006" }}</p>
+                            <h3> Posted on {{ .PublishDate.Format "2 January 2006" }}</h3>
+                            <h4>
+                            {{ if .Params.tags }}
+                              {{ $len := len .Params.tags }}
+                              {{ $len := sub $len 1 }}
+                              {{ range $index, $tag := .Params.tags }}
+                                  <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">{{ $tag }}</a>{{ if ( ne $index $len ) }} • {{ end }}
+                              {{ end }}
+                            {{ end }}
+                            </h4>
                         </div>
                     </header>
                     <div class="entry-thumbnail">

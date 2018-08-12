@@ -3,14 +3,33 @@
 
   .entry-title {
     font-size: 2.25em;
+    margin-bottom: 5px;
   }
 
   .entry-meta {
-    p {
+    h3 {
       color: $passive-text-color;
+      margin-bottom: 0;
+    }
+
+    h4 {
+      margin-top: 0;
+      font-variant: all-small-caps;
+      margin-bottom: 45px;
+      a {
+        color: $passive-text-color;
+
+        &:hover {
+          color: $primary-text-link-color;
+        }
+      }
     }
   }
 
+}
+
+.entry-content {
+  margin-top: 35px;
 }
 
 .entry-thumbnail {

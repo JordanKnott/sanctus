@@ -5,6 +5,15 @@
     <a href="{{ .URL }}">
         <h1>{{ .Title }}</h1>
     </a>
-    <h3 class="meta">{{ .PublishDate.Format "2 January 2006" }} • {{ .Params.category }}</h3>
+    <h3 class="meta">{{ .PublishDate.Format "2 January 2006" }}</h3>
+    <h3 class="meta">
+    {{ if .Params.tags }}
+      {{ $len := len .Params.tags }}
+      {{ $len := sub $len 1 }}
+      {{ range $index, $tag := .Params.tags }}
+          <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}">{{ $tag }}</a>{{ if ( ne $index $len ) }} • {{ end }}
+      {{ end }}
+    {{ end }}
+    </h3>
 </div>
 

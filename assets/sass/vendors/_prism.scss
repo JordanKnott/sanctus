@@ -1,4 +1,5 @@
-/* http://prismjs.com/download.html?themes=prism-okaidia&languages=markup+css+clike+javascript+c+bash+cpp+git+glsl+java+json+php+python+scss+scala+yaml&plugins=line-highlight+line-numbers+toolbar+previewer-base+previewer-color+command-line+show-language+copy-to-clipboard */
+/* PrismJS 1.15.0
+https://prismjs.com/download.html#themes=prism-okaidia&languages=markup+css+clike+javascript+django+docker+markup-templating+git+ini+java+json+nginx+php+sql+scss+python+jsx+vim&plugins=toolbar+show-language */
 /**
  * okaidia theme for JavaScript, CSS and HTML
  * Loosely based on Monokai textmate theme by http://www.monokai.nl/
@@ -96,7 +97,8 @@ pre[class*="language-"] {
 
 .token.atrule,
 .token.attr-value,
-.token.function {
+.token.function,
+.token.class-name {
 	color: #e6db74;
 }
 
@@ -121,97 +123,11 @@ pre[class*="language-"] {
 	cursor: help;
 }
 
-pre[data-line] {
-	position: relative;
-	padding: 1em 0 1em 3em;
-}
-
-.line-highlight {
-	position: absolute;
-	left: 0;
-	right: 0;
-	padding: inherit 0;
-	margin-top: 1em; /* Same as .prism’s padding-top */
-
-	background: hsla(24, 20%, 50%,.08);
-	background: linear-gradient(to right, hsla(24, 20%, 50%,.1) 70%, hsla(24, 20%, 50%,0));
-
-	pointer-events: none;
-
-	line-height: inherit;
-	white-space: pre;
-}
-
-	.line-highlight:before,
-	.line-highlight[data-end]:after {
-		content: attr(data-start);
-		position: absolute;
-		top: .4em;
-		left: .6em;
-		min-width: 1em;
-		padding: 0 .5em;
-		background-color: hsla(24, 20%, 50%,.4);
-		color: hsl(24, 20%, 95%);
-		font: bold 65%/1.5 sans-serif;
-		text-align: center;
-		vertical-align: .3em;
-		border-radius: 999px;
-		text-shadow: none;
-		box-shadow: 0 1px white;
-	}
-
-	.line-highlight[data-end]:after {
-		content: attr(data-end);
-		top: auto;
-		bottom: .4em;
-	}
-
-pre.line-numbers {
-	position: relative;
-	padding-left: 3.8em;
-	counter-reset: linenumber;
-}
-
-pre.line-numbers > code {
-	position: relative;
-    white-space: inherit;
-}
-
-.line-numbers .line-numbers-rows {
-	position: absolute;
-	pointer-events: none;
-	top: 0;
-	font-size: 100%;
-	left: -3.8em;
-	width: 3em; /* works for line-numbers below 1000 lines */
-	letter-spacing: -1px;
-	border-right: 1px solid #999;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-
-}
-
-	.line-numbers-rows > span {
-		pointer-events: none;
-		display: block;
-		counter-increment: linenumber;
-	}
-
-		.line-numbers-rows > span:before {
-			content: counter(linenumber);
-			color: #999;
-			display: block;
-			padding-right: 0.8em;
-			text-align: right;
-		}
-pre.code-toolbar {
+div.code-toolbar {
 	position: relative;
 }
 
-pre.code-toolbar > .toolbar {
+div.code-toolbar > .toolbar {
 	position: absolute;
 	top: .3em;
 	right: .2em;
@@ -219,19 +135,19 @@ pre.code-toolbar > .toolbar {
 	opacity: 0;
 }
 
-pre.code-toolbar:hover > .toolbar {
+div.code-toolbar:hover > .toolbar {
 	opacity: 1;
 }
 
-pre.code-toolbar > .toolbar .toolbar-item {
+div.code-toolbar > .toolbar .toolbar-item {
 	display: inline-block;
 }
 
-pre.code-toolbar > .toolbar a {
+div.code-toolbar > .toolbar a {
 	cursor: pointer;
 }
 
-pre.code-toolbar > .toolbar button {
+div.code-toolbar > .toolbar button {
 	background: none;
 	border: 0;
 	color: inherit;
@@ -244,9 +160,9 @@ pre.code-toolbar > .toolbar button {
 	-ms-user-select: none;
 }
 
-pre.code-toolbar > .toolbar a,
-pre.code-toolbar > .toolbar button,
-pre.code-toolbar > .toolbar span {
+div.code-toolbar > .toolbar a,
+div.code-toolbar > .toolbar button,
+div.code-toolbar > .toolbar span {
 	color: #bbb;
 	font-size: .8em;
 	padding: 0 .5em;
@@ -256,118 +172,13 @@ pre.code-toolbar > .toolbar span {
 	border-radius: .5em;
 }
 
-pre.code-toolbar > .toolbar a:hover,
-pre.code-toolbar > .toolbar a:focus,
-pre.code-toolbar > .toolbar button:hover,
-pre.code-toolbar > .toolbar button:focus,
-pre.code-toolbar > .toolbar span:hover,
-pre.code-toolbar > .toolbar span:focus {
+div.code-toolbar > .toolbar a:hover,
+div.code-toolbar > .toolbar a:focus,
+div.code-toolbar > .toolbar button:hover,
+div.code-toolbar > .toolbar button:focus,
+div.code-toolbar > .toolbar span:hover,
+div.code-toolbar > .toolbar span:focus {
 	color: inherit;
 	text-decoration: none;
-}
-
-.prism-previewer,
-.prism-previewer:before,
-.prism-previewer:after {
-	position: absolute;
-	pointer-events: none;
-}
-.prism-previewer,
-.prism-previewer:after {
-	left: 50%;
-}
-.prism-previewer {
-	margin-top: -48px;
-	width: 32px;
-	height: 32px;
-	margin-left: -16px;
-
-	opacity: 0;
-	-webkit-transition: opacity .25s;
-	-o-transition: opacity .25s;
-	transition: opacity .25s;
-}
-.prism-previewer.flipped {
-	margin-top: 0;
-	margin-bottom: -48px;
-}
-.prism-previewer:before,
-.prism-previewer:after {
-	content: '';
-	position: absolute;
-	pointer-events: none;
-}
-.prism-previewer:before {
-	top: -5px;
-	right: -5px;
-	left: -5px;
-	bottom: -5px;
-	border-radius: 10px;
-	border: 5px solid #fff;
-	box-shadow: 0 0 3px rgba(0, 0, 0, 0.5) inset, 0 0 10px rgba(0, 0, 0, 0.75);
-}
-
-.prism-previewer:after {
-	top: 100%;
-	width: 0;
-	height: 0;
-	margin: 5px 0 0 -7px;
-	border: 7px solid transparent;
-	border-color: rgba(255, 0, 0, 0);
-	border-top-color: #fff;
-}
-.prism-previewer.flipped:after {
-	top: auto;
-	bottom: 100%;
-	margin-top: 0;
-	margin-bottom: 5px;
-	border-top-color: rgba(255, 0, 0, 0);
-	border-bottom-color: #fff;
-}
-.prism-previewer.active {
-	opacity: 1;
-}
-.prism-previewer-color {
-	background-image: linear-gradient(45deg, #bbb 25%, transparent 25%, transparent 75%, #bbb 75%, #bbb), linear-gradient(45deg, #bbb 25%, #eee 25%, #eee 75%, #bbb 75%, #bbb);
-	background-size: 10px 10px;
-	background-position: 0 0, 5px 5px;
-}
-.prism-previewer-color:before {
-	background-color: inherit;
-	background-clip: padding-box;
-}
-
-.command-line-prompt {
-	border-right: 1px solid #999;
-	display: block;
-	float: left;
-	font-size: 100%;
-	letter-spacing: -1px;
-	margin-right: 1em;
-	pointer-events: none;
-
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.command-line-prompt > span:before {
-	color: #999;
-	content: ' ';
-	display: block;
-	padding-right: 0.8em;
-}
-
-.command-line-prompt > span[data-user]:before {
-	content: "[" attr(data-user) "@" attr(data-host) "] $";
-}
-
-.command-line-prompt > span[data-user="root"]:before {
-	content: "[" attr(data-user) "@" attr(data-host) "] #";
-}
-
-.command-line-prompt > span[data-prompt]:before {
-	content: attr(data-prompt);
 }
 

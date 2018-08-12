@@ -35,11 +35,20 @@
   h3 {
     font-size: .9em;
     color: $passive-text-color;
-    padding: 10px 0 20px 0;
     margin: 0;
+    padding: 10px 0 5px 0;
 
-    .category {
+    &:last-child {
+      padding: 0 0 20px 0;
       font-variant: all-small-caps;
+    }
+
+    a {
+      color: $passive-text-color;
+
+      &:hover {
+        color: $primary-text-link-color;
+      }
     }
   }
 
